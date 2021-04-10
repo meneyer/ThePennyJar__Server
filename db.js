@@ -1,20 +1,32 @@
-const { Sequelize } = require('sequelize');
-// const Sequelize = require('sequelize');
+// const { Sequelize } = require('sequelize');
+const Sequelize = require('sequelize');
 
-const db = new Sequelize('the-penny-jar-server', 'postgres', 'password', {
-// const sequelize = new Sequelize('the-penny-jar-server', 'postgres', 'password', {
+// const db = new Sequelize('the-penny-jar-server', 'postgres', 'password', {
+const sequelize = new Sequelize('the-penny-jar-server', 'postgres', 'password', {
     host: 'localhost',
     dialect: 'postgres'
 });
 
-// sequelize.authenticate().then(
-//     function(){
-//         console.log('connected to the penny jar server database');
-//     },
-//     function(err){
-//         console.log(err);
-//     }
-// );
+const User = sequelize.import("./models/user");
+const UserInfo = sequelize.import('./models/userInfo.js')
+const Request = sequelize.import('./models/request');
+const FinancialDonation = sequelize.import('./models/financialDonation.js')
+// const DonorOrRecipient = sequelize.import('./models/donorOrRecipient.js')
 
-module.exports=db
-// module.exports=Sequelize
+UserInfo.belongsTo(User)
+User.hasOne(UserInfo)
+
+FinancialDonation.belongsTo(User)
+User.hasMany(FinancialDonation)
+
+Request.belongsTo(User)
+User.hasMany(Request)
+
+// DonorOrRecipient.belongsTo(FinancialDonation)
+// FinancialDonation.hasOne(DonorOrRecipient)
+
+// DonorOrRecipient.belongsTo(Request)
+// Request.hasOne(DonorOrRecipient)
+
+// module.exports=db
+module.exports=sequelize

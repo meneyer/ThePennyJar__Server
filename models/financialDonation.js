@@ -1,9 +1,11 @@
-const { DataTypes } = require("sequelize");
-const db = require("../db");
+// const { DataTypes } = require("sequelize");
+// const db = require("../db");
 
-const FinancialDonation = db.define("financialdonation", {
+module.exports = function (sequelize, DataTypes) {
+
+const FinancialDonation = sequelize.define("financialdonation", {
     choice: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         allowNull: false,           
     },
     amount:{
@@ -14,16 +16,18 @@ const FinancialDonation = db.define("financialdonation", {
         type: DataTypes.BOOLEAN,
         allowNull: false,
     },
-    donorId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    owner: {
+    // donorId: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false
+    // },
+    userId: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
 });
-module.exports = FinancialDonation
+return FinancialDonation
+};
+// module.exports = FinancialDonation
 
 // {"financialDonation":
 //     {

@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const { DonorOrRecipient } = require('../models');
+// const router = require('express').Router();
+// const DonorOrRecipient = require('../db').import('../models/donorOrRecipient');
 
-module.exports = router;
+// module.exports = router;
 
 
 

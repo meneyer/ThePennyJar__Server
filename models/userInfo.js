@@ -1,7 +1,9 @@
-const { DataTypes } = require("sequelize");
-const db = require("../db");
+// const { DataTypes } = require("sequelize");
+// const db = require("../db");
 
-const UserInfo = db.define("userInfo", {
+module.exports = function (sequelize, DataTypes) {
+
+const UserInfo = sequelize.define("userInfo", {
     firstName:{
         type: DataTypes.STRING,
         allowNull: false,  
@@ -34,12 +36,14 @@ const UserInfo = db.define("userInfo", {
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    owner: {
+    userId: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
 });
-module.exports = UserInfo
+return UserInfo
+};
+// module.exports = UserInfo
 
 
 // {"userInfo":

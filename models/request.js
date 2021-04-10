@@ -1,7 +1,9 @@
-const { DataTypes } = require("sequelize");
-const db = require("../db");
+// const { DataTypes } = require("sequelize");
+// const db = require("../db");
 
-const Request = db.define("request", {
+module.exports = function (sequelize, DataTypes) {
+
+const Request = sequelize.define("request", {
     displayName:{
         type: DataTypes.STRING,
         allowNull: false,  
@@ -30,16 +32,18 @@ const Request = db.define("request", {
         type: DataTypes.STRING,
         allowNull: true
     },
-    recipientId:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    owner: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    // recipientId:{
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false
+    // },
+    // owner: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false
+    // }
 });
-module.exports = Request
+// module.exports = Request
+return Request
+};
 
 // {"request":
 //     {
