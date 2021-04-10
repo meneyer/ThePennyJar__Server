@@ -17,24 +17,24 @@ router.post('/', validateSession, function (req, res){
     .catch(err => res.status(500).json({error: err}))
 })
 
-//GET ALL DONATIONS BY ALL USERS  /needapenny/
+//GET ALL DONATIONS BY ALL USERS  /giveapenny/
 router.get("/", function(req, res){
     FinancialDonation.findAll()
         .then((giveAPenny) => res.status(200).json(giveAPenny))
         .catch((err) => res.status(500).json({error:err}));
     })
 
-// GET A SINGLE USERS DONATIONS  /needapenny/mydonations
-// router.get("/mydonations", validateSession, function(req, res){
-//     const query = {
-//         where:{userId: req.user.id},
-//         include:"user"
-//     }
+// GET A SINGLE USERS DONATIONS  /giveapenny/mydonations
+router.get("/mydonations", validateSession, function(req, res){
+    const query = {
+        where:{userId: req.user.id},
+        include:"user"
+    }
     
-//     FinancialDonation.findAll(query)
-//         .then((giveAPenny) => res.status(200).json(giveAPenny))
-//         .catch((err) => res.status(500).json({error:err}));
-//     })
+    FinancialDonation.findAll(query)
+        .then((giveAPenny) => res.status(200).json(giveAPenny))
+        .catch((err) => res.status(500).json({error:err}));
+    })
 
 // UPDATE A SINGLE USERS DONATIONS  /needapenny/update/:taxReceiptId
 router.put('/update/:taxReceiptId', validateSession, function(req, res) {

@@ -30,16 +30,16 @@ router.get("/", function(req, res) {
     })
 
 //GET A SINGLE USERS PROFILE  /profile/myprofile
-// router.get("/myprofile", validateSession, function(req, res){
-//     const query = {
-//         where:{userId: req.user.id},
-//         include:"user"
-//     }
+router.get("/myprofile", validateSession, function(req, res){
+    const query = {
+        where:{userId: req.user.id},
+        include:"user"
+    }
 
-//     UserInfo.findOne(query)
-//         .then((profile) => res.status(200).json(profile))
-//         .catch((err) => res.status(500).json({error: err}));
-//     })
+    UserInfo.findOne(query)
+        .then((profile) => res.status(200).json(profile))
+        .catch((err) => res.status(500).json({error: err}));
+    })
 
 // UPDATE A PROFILE    /profile/update/:zipcodeId
 router.put('/update/:zipcodeId', validateSession, function(req, res) {

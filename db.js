@@ -8,9 +8,9 @@ const sequelize = new Sequelize('the-penny-jar-server', 'postgres', 'password', 
 });
 
 const User = sequelize.import("./models/user");
-const UserInfo = sequelize.import('./models/userInfo.js')
+const UserInfo = sequelize.import('./models/userInfo')
 const Request = sequelize.import('./models/request');
-const FinancialDonation = sequelize.import('./models/financialDonation.js')
+const FinancialDonation = sequelize.import('./models/financialDonation')
 // const DonorOrRecipient = sequelize.import('./models/donorOrRecipient.js')
 
 UserInfo.belongsTo(User)

@@ -36,10 +36,10 @@ const UserInfo = sequelize.define("userInfo", {
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    // userId: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false
+    // }
 });
 return UserInfo
 };
