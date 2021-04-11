@@ -9,6 +9,7 @@ router.post('/', validateSession, function (req, res){
         choice: req.body.financialdonation.choice,
         amount: req.body.financialdonation.amount,
         taxReceipt: req.body.financialdonation.taxReceipt,
+        messageToRecipient: req.body.financialdonation.messageToRecipient,
         // donorId: req.body.donorId,      
         userId: req.user.id,      
     }
@@ -44,7 +45,8 @@ router.put('/update/:taxReceiptId', validateSession, function(req, res) {
     const updateDonation = {
         choice: req.body.financialdonation.choice,
         amount: req.body.financialdonation.amount,
-        taxReceipt: req.body.financialdonation.taxReceipt,           
+        taxReceipt: req.body.financialdonation.taxReceipt, 
+        messageToRecipient: req.body.financialdonation.messageToRecipient,          
         userId: req.user.id,       
     }
 

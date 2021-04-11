@@ -16,6 +16,10 @@ const FinancialDonation = sequelize.define("financialdonation", {
         type: DataTypes.BOOLEAN,
         allowNull: false,
     },
+    messageToRecipient:{
+        type: DataTypes.STRING(2000),
+        allowNull:true,
+    },
     // donorId: {
     //     type: DataTypes.INTEGER,
     //     allowNull: false

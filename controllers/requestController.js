@@ -13,7 +13,8 @@ router.post('/', validateSession, function (req, res){
         dateNeeded: req.body.request.dateNeeded,
         giftRecipient: req.body.request.giftRecipient,
         link: req.body.request.link, 
-        requestFilled: req.body.request.requestFilled,       
+        messageToDonor: req.body.request.messageToDonor,       
+        requestFilled: req.body.request.requestFilled,
         userId: req.user.id,      
     }
     Request.create(needAPennyRequest)
@@ -51,7 +52,8 @@ router.put('/update/:linkId', validateSession, function(req, res) {
         dateNeeded: req.body.request.dateNeeded,
         giftRecipient: req.body.request.giftRecipient,
         link: req.body.request.link,
-        requestFilled: req.body.request.requestFilled,   
+        messageToDonor: req.body.request.messageToDonor,      
+        requestFilled: req.body.request.requestFilled,
         userId: req.user.id,  
     }
 
