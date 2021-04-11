@@ -1,7 +1,6 @@
 const router = require('express').Router();
 let validateSession = require('../middleware/validate-session')
 const UserInfo = require('../db').import('../models/userInfo');
-// let authRole =require ('../middleware/permissions')
 
 
 //FILL OUT USER INFO  /profile/
@@ -26,7 +25,7 @@ router.post('/', validateSession, function (req, res) {
 // GET ALL PROFILES FROM EVERYONE
 router.get("/", validateSession, function(req, res) {
     if(req.user.role !=='admin'){
-        res.send({error: "Not Authorized, admin only"})
+        res.send({error: "Not Authorized, Admin only"})
     }
     UserInfo.findAll()
         .then((profile) => res.status(200).json(profile))

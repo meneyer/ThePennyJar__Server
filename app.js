@@ -7,7 +7,6 @@ let user = require('./controllers/userController')
 let needapenny = require('./controllers/requestController')
 let profile = require('./controllers/userInfoController')
 let giveapenny = require('./controllers/financialDonationController')
-// let donororrecipient = require('./controllers/donorOrReciptientController')
 
 app.use(require('./middleware/headers'));
 
@@ -17,7 +16,6 @@ app.use('/user', user)
 app.use('/needapenny', needapenny)
 app.use('/profile', profile)
 app.use('/giveapenny', giveapenny)
-// app.use('/donororrecipient', donororrecipient)
 
 sequelize.authenticate()
     .then(() => sequelize.sync())
