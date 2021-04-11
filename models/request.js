@@ -32,6 +32,10 @@ const Request = sequelize.define("request", {
         type: DataTypes.STRING,
         allowNull: true
     },
+    requestFilled:{
+        type: DataTypes.BOOLEAN,
+        allowNull: true
+    },
     // recipientId:{
     //     type: DataTypes.INTEGER,
     //     allowNull: false
