@@ -15,7 +15,9 @@ router.post('/', validateSession, function (req, res){
         link: req.body.request.link, 
         messageToDonor: req.body.request.messageToDonor,       
         requestFilled: req.body.request.requestFilled,
-        userId: req.user.id,      
+        // requestFilled: req.financialdonation.id,
+        userId: req.user.id, 
+        role: req.user.role     
     }
     Request.create(needAPennyRequest)
     .then(needAPennyRequest => res.status(200).json(needAPennyRequest))
@@ -44,6 +46,9 @@ router.get("/myrequests", validateSession, function(req, res){
 
 // UPDATE A SINGLE USERS REQUESTS  /needapenny/update/:linkId
 router.put('/update/:linkId', validateSession, function(req, res) {
+    if(req.user.role === 'donor'){
+        res.send({error: "Not Authorized, Restricted Route"})
+    }
     const updateRequest = {
         displayName: req.body.request.displayName,
         description: req.body.request.description,
@@ -54,14 +59,21 @@ router.put('/update/:linkId', validateSession, function(req, res) {
         link: req.body.request.link,
         messageToDonor: req.body.request.messageToDonor,      
         requestFilled: req.body.request.requestFilled,
-        userId: req.user.id,  
+        userId: req.user.id,
     }
 
     const query = {where: {id: req.params.linkId, userId: req.user.id}}
+    const admin = {where: {id: req.params.linkId}}
 
-    Request.update(updateRequest, query)
-    .then((request) => res.status(200).json(request))
-    .catch((err) => res.status(500).json({error:err}))
+    if (req.user.role ==='user'){
+        Request.update(updateRequest, query)
+        .then((request) => res.status(200).json(request))
+        .catch((err) => res.status(500).json({error:err}))
+    } else {
+        Request.update(updateRequest, admin)
+        .then((request) => res.status(200).json(request))
+        .catch((err) => res.status(500).json({error:err}))
+    }
 })
 
 // DELETE A REQUEST   /needapenny/delete/:id
