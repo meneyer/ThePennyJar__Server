@@ -20,9 +20,9 @@ router.post('/', validateSession, function (req, res){
 
 //GET ALL DONATIONS BY ALL USERS  /giveapenny/
 router.get("/", validateSession, function(req, res){
-    if(req.user.role !=='admin'){
-        res.send({error: "Not Authorized, Admin only"})
-    }
+    // if(req.user.role !=='admin'){
+    //     res.send({error: "Not Authorized, Admin only"})
+    // }
     FinancialDonation.findAll()
         .then((giveAPenny) => res.status(200).json(giveAPenny))
         .catch((err) => res.status(500).json({error:err}));

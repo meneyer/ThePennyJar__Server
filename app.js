@@ -8,6 +8,11 @@ let needapenny = require('./controllers/requestController')
 let profile = require('./controllers/userInfoController')
 let giveapenny = require('./controllers/financialDonationController')
 
+
+var cors = require('cors')
+app.use(cors())
+app.options('*', cors())
+
 app.use(require('./middleware/headers'));
 
 app.use(express.json());
