@@ -47,6 +47,7 @@ router.get("/myprofile", validateSession, function(req, res){
 // UPDATE A PROFILE    /profile/update/:zipcodeId
 router.put('/update/:zipcodeId', validateSession, function(req, res) {
     const updateProfile = {
+        firstName: req.body.userInfo.firstName,
         lastName: req.body.userInfo.lastName,
         email: req.body.userInfo.email,
         phone: req.body.userInfo.phone,
