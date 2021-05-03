@@ -51,19 +51,33 @@ router.put('/update/:taxReceiptId', validateSession, function(req, res) {
     }
 
     const query = {where: {id: req.params.taxReceiptId, userId: req.user.id}}
+    const admin = {where: {id: req.params.taxReceiptId}}
 
+    if (req.user.role ==='user'){
     FinancialDonation.update(updateDonation, query)
     .then((giveAPenny) => res.status(200).json(giveAPenny))
     .catch((err) => res.status(500).json({error:err}))
+    } else {
+    FinancialDonation.update(updateDonation, admin)
+    .then((giveAPenny) => res.status(200).json(giveAPenny))
+    .catch((err) => res.status(500).json({error:err}))
+    }
 })
 
 // DELETE A DONATION   /needapenny/delete/:id
 router.delete('/delete/:id', validateSession, function(req, res) {
     const query = {where: {id: req.params.id, userId: req.user.id}};
+    const admin = {where: {id: req.params.id}}
 
+    if (req.user.role ==='user'){
     FinancialDonation.destroy(query)
     .then(() => res.status(200).json({message: "This donation has been removed"}))
     .catch((err) => res.status(500).json({error:err}));
+    } else {
+    FinancialDonation.destroy(query, admin)
+    .then(() => res.status(200).json({message: "This donation has been removed"}))
+    .catch((err) => res.status(500).json({error:err}));
+    }
 });
 
 module.exports = router;

@@ -58,19 +58,32 @@ router.put('/update/:zipcodeId', validateSession, function(req, res) {
         userId: req.user.id
     }
     const query = {where: {id: req.params.zipcodeId, userId: req.user.id}}
-
+    const admin = {where: {id: req.params.zipcodeId}}
+    
+    if (req.user.role ==='user'){
     UserInfo.update(updateProfile, query)
     .then((profileupdate) => res.status(200).json(profileupdate))
     .catch((err) => res.status(500).json({error:err}))
+    } else {
+        UserInfo.update(updateProfile, admin)
+        .then((profileupdate) => res.status(200).json(profileupdate))
+        .catch((err) => res.status(500).json({error:err}))   
+    }
 })
 
 // DELETE A PROFILE   /profile/delete/:id
 router.delete('/delete/:id', validateSession, function(req, res) {
     const query = {where: {id: req.params.id, userId: req.user.id}};
+    const admin = {where: {id: req.params.zipcodeId}}
 
+    if (req.user.role ==='user'){
     UserInfo.destroy(query)
     .then(() => res.status(200).json({message: "This profile has been removed"}))
     .catch((err) => res.status(500).json({error:err}));
+    } else {
+        UserInfo.destroy(query, admin)
+    .then(() => res.status(200).json({message: "This profile has been removed"}))
+    }
 });
 
 module.exports = router;

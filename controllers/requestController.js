@@ -79,10 +79,17 @@ router.put('/update/:linkId', validateSession, function(req, res) {
 // DELETE A REQUEST   /needapenny/delete/:id
 router.delete('/delete/:id', validateSession, function(req, res) {
     const query = {where: {id: req.params.id, userId: req.user.id}};
+    const admin = {where: {id: req.params.zipcodeId}}
 
+    if (req.user.role ==='user'){
     Request.destroy(query)
     .then(() => res.status(200).json({message: "This request has been removed"}))
     .catch((err) => res.status(500).json({error:err}));
+} else {
+    Request.destroy(query, admin)
+    .then(() => res.status(200).json({message: "This request has been removed"}))
+    .catch((err) => res.status(500).json({error:err}));
+}
 });
 
 module.exports = router
