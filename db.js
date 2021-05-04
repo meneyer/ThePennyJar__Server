@@ -2,8 +2,8 @@
 const Sequelize = require('sequelize');
 
 // const db = new Sequelize('the-penny-jar-server', 'postgres', 'password', {
-const sequelize = new Sequelize('the-penny-jar-server', 'postgres', 'password', {
-    host: 'localhost',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+    // host: 'localhost',
     dialect: 'postgres'
 });
 

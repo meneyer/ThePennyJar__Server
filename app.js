@@ -26,8 +26,8 @@ sequelize.authenticate()
     .then(() => sequelize.sync())
     // .then(() => sequelize.sync({force: true}))
     .then(() =>
-        app.listen(3000, () => {
-        console.log(`[server]: App is listening on localhost:3000`);
+        app.listen(process.env.PORT, () => {
+        console.log(`[server]: App is listening on localhost:process.env.PORT`);
         })
     )
     .catch((e) => {
