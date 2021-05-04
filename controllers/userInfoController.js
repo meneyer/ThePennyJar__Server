@@ -58,17 +58,17 @@ router.put('/update/:zipcodeId', validateSession, function(req, res) {
         userId: req.user.id
     }
     const query = {where: {id: req.params.zipcodeId, userId: req.user.id}}
-    const admin = {where: {id: req.params.zipcodeId}}
+    // const admin = {where: {id: req.params.zipcodeId}}
     
-    if (req.user.role ==='user'){
+    // if (req.user.role ==='user'){
     UserInfo.update(updateProfile, query)
     .then((profileupdate) => res.status(200).json(profileupdate))
     .catch((err) => res.status(500).json({error:err}))
-    } else {
-        UserInfo.update(updateProfile, admin)
-        .then((profileupdate) => res.status(200).json(profileupdate))
-        .catch((err) => res.status(500).json({error:err}))   
-    }
+    // } else {
+    //     UserInfo.update(updateProfile, admin)
+    //     .then((profileupdate) => res.status(200).json(profileupdate))
+    //     .catch((err) => res.status(500).json({error:err}))   
+    // }
 })
 
 // DELETE A PROFILE   /profile/delete/:id

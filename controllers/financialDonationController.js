@@ -51,17 +51,17 @@ router.put('/update/:taxReceiptId', validateSession, function(req, res) {
     }
 
     const query = {where: {id: req.params.taxReceiptId, userId: req.user.id}}
-    const admin = {where: {id: req.params.taxReceiptId}}
+    // const admin = {where: {id: req.params.taxReceiptId}}
 
-    if (req.user.role ==='user'){
+    // if (req.user.role ==='user'){
     FinancialDonation.update(updateDonation, query)
     .then((giveAPenny) => res.status(200).json(giveAPenny))
     .catch((err) => res.status(500).json({error:err}))
-    } else {
-    FinancialDonation.update(updateDonation, admin)
-    .then((giveAPenny) => res.status(200).json(giveAPenny))
-    .catch((err) => res.status(500).json({error:err}))
-    }
+    // } else {
+    // FinancialDonation.update(updateDonation, admin)
+    // .then((giveAPenny) => res.status(200).json(giveAPenny))
+    // .catch((err) => res.status(500).json({error:err}))
+    // }
 })
 
 // DELETE A DONATION   /needapenny/delete/:id
