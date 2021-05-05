@@ -59,7 +59,7 @@ router.put('/update/:linkId', validateSession, function(req, res) {
         link: req.body.request.link,
         messageToDonor: req.body.request.messageToDonor,      
         requestFilled: req.body.request.requestFilled,
-        userId: req.user.id,
+        // userId: req.user.id,
     }
 
     const query = {where: {id: req.params.linkId, userId: req.user.id}}

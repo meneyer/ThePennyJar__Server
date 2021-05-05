@@ -17,7 +17,8 @@ router.post('/create', function (req, res){
 
             res.json({
                 message: "User created successfully",
-                sessionToken: token
+                sessionToken: token,
+                user:user,
             });
         }
     )

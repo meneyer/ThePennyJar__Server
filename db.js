@@ -1,7 +1,7 @@
 // const { Sequelize } = require('sequelize');
 const Sequelize = require('sequelize');
 
-// const db = new Sequelize('the-penny-jar-server', 'postgres', 'password', {
+// TO RUN ON HEROKU (USE 5-14 instead of 17-20)
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
     // host: 'localhost',
     dialect: 'postgres',
@@ -12,6 +12,12 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
         }
     }
 });
+
+//TO RUN LOCALLY (USE 17-20 instead of 5-14)
+// const sequelize = new Sequelize('the-penny-jar-server', 'postgres', 'password', {
+//     host: 'localhost',
+//     dialect: 'postgres'
+// });
 
 const User = sequelize.import("./models/user");
 const UserInfo = sequelize.import('./models/userInfo')
