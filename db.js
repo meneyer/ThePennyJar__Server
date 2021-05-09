@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 // TO RUN ON HEROKU (USE 5-14 instead of 17-20)
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    // host: 'localhost',
+    host: 'localhost',
     dialect: 'postgres',
     dialectOptions:{
         ssl:{
